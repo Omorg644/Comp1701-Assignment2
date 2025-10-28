@@ -4,9 +4,18 @@
 # 
 # 
 # 
+def mean_calc(air_data:list)->float:
+    i = 0
+    sum = 0
+    while i < len(air_data):
+        sum+=air_data[i][1]
+        i+=1
+    # print(sum)
+    return sum
+    
 
 def main()->None:
-    list = []
+    air_data = []
     location = input("Location (\"END to stop\"): ")
     while location != "END":
         sub_list = []
@@ -15,11 +24,13 @@ def main()->None:
         data_oct = int(input("Air quality in October: "))
         sub_list.append(data_june)
         sub_list.append(data_oct)
-        list.append(sub_list)
+        air_data.append(sub_list)
         location = input("Location (\"END to stop\"): ")
     i = 0
-    while i <len(list):
-        print(f"{i+1}. {list[i][0]} {list[i][1]} {list[i][2]}")
+    while i <len(air_data):
+        print(f"{i+1}. {air_data[i][0]} {air_data[i][1]} {air_data[i][2]}")
         i+=1
+    mean = mean_calc(air_data)
+    print(mean)
     
 main()
