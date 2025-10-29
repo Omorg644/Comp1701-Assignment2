@@ -22,7 +22,26 @@ def assign_air_quality(location_data:list)->list:
         # location_data[i]
         data_june = int(input(f"{location_data[i][0]}'s air quality in June: "))
         data_oct = int(input(f"{location_data[i][0]}'s air quality in October: "))
-        location_data[i][0].append(data_june)
-        location_data[i][0].append(data_oct)
+        location_data[i].append(data_june)
+        location_data[i].append(data_oct)
         i+=1
     return location_data
+
+def compare_air_quality(compiled_data:list)->list:
+    # worst_locations = []
+    check = True
+    i = 0
+    while check == True:
+        # if i<len(compiled_data)-1:
+        if i == len(compiled_data)-1:
+            i=0
+        if compiled_data[i][2] >= compiled_data[i+1][2]:
+            smaller = (compiled_data[i+1])
+            compiled_data[i+1]=compiled_data[i]
+            compiled_data[i]=smaller
+        else:
+            check = False
+        # elif compiled_data[i][2] == compiled_data[i+1][2]:
+        i+=1
+    print(compiled_data)
+    return compiled_data
