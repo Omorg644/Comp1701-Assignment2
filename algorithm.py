@@ -14,18 +14,19 @@ def main()->None:
         location_data.append(sub_list)
         location = (input("Location (\"END to stop\"): "))
     # print(location_data)
-    data_compiled = module.assign_air_quality(location_data)
-    # print(data_compiled)
-    i = 0
+    air_data_compiled = module.assign_air_quality(location_data)
+    air_data_sorted = sorted(air_data_compiled)
+    print(air_data_sorted)
+    # i = 0
     # while i <len(data_compiled):
     #     print(f"{i+1}. {data_compiled[i][0]} {data_compiled[i][1]} {data_compiled[i][2]}")
     #     i+=1
-    mean = module.mean_calc(data_compiled)
-    # print(mean)
-    median = module.median_calc(data_compiled)
-    # print(median)
-    sorted_list = module.compare_air_quality(data_compiled)
-    print(sorted_list)
+    mean = module.mean_calc(air_data_compiled)
+    print(mean)
+    median = module.median_calc(air_data_sorted)
+    print(median)
+    sorted_list = module.compare_air_quality(air_data_compiled,location_data)
+    # print(sorted_list)
     
     
 main()
