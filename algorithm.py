@@ -1,44 +1,56 @@
 # 
 # Owen Morgan
-# Oct. 22
+# COMP 1701 Assignment 2
+# Nov. 16
 # 
 
 import module
 
-GOOD_AIR_CUTOFF = 50
+GOOD_AIR_CUTOFF = 50 #[3]
 
 def main()->None:
-    location_data = []
-    location = (input("Location (\"END to stop\"): "))
-    while location != "END":
-        sub_list = []
-        sub_list.append(location)
-        location_data.append(sub_list)
-        location = (input("Location (\"END to stop\"): "))
-    print(location_data)
-    # month = 
-    # either put all functions in loop with each iteration passing june or oct as param, or have all functions in a seperate moule function with ,onsths as a param
-    air_data_compiled = module.assign_air_quality(location_data, month)
-    air_data_unsorted = air_data_compiled[1]
-    print(air_data_unsorted)
-    air_data_sorted = sorted(air_data_unsorted)
-    print(air_data_sorted)
+    location_data = ["Airdrie","Calgary Varsity","Caroline","Edson","Elk Island","Jasper","Fort Chipewyan","St. Albert","Wapasu","Smoky Heights"] #[3]
+    june_data_unsorted = [141,153,136,50,73,98,9,79,14,40] #[3]
+    month_oct = False
+    june_data_compiled = module.assign_air_quality(location_data,june_data_unsorted,month_oct)
+    june_data_sorted = sorted(june_data_unsorted) #[1]
+    # print(june_data_sorted)
+    # print(june_data_compiled)
 
-    mean = module.mean_calc(air_data_unsorted)
-    print(mean)
+    month_oct = True
+    oct_data_compiled = module.assign_air_quality(location_data,june_data_unsorted,month_oct)
+    oct_data_unsorted = oct_data_compiled[1]
+    # print(oct_data_compiled)
+    oct_data_sorted = sorted(oct_data_unsorted) #[1]
+    # print(oct_data_sorted)
 
-    median = module.median_calc(air_data_sorted)
-    print(median)
+    june_mean = module.mean_calc(june_data_unsorted)
+    # print(june_mean)
+    oct_mean = module.mean_calc(oct_data_unsorted)
+    # print(oct_mean)
 
-    # test_location = [['q', 1], ['w', 2], ['e', 3], ['r', 4], ['t', 0], ['y', 0], ['u', 0], ['i', 8], ['o', 7], ['p', 9]]
-    # test_sorted = [0, 0, 0, 1, 2, 3, 4, 7, 8, 9]
-    compared_list = module.compare_air_quality(air_data_compiled[0],air_data_sorted)
-    print(compared_list)
+    june_median = module.median_calc(june_data_sorted)
+    # print(june_median)
+    oct_median = module.median_calc(oct_data_sorted)
+    # print(oct_median)
 
-    # test_sorted = [10, 20, 50, 100, 250, 300, 400, 700, 800, 900]
-    good_percent = module.find_percent(air_data_sorted,GOOD_AIR_CUTOFF)
-    print(good_percent)
+    june_compared_list = module.compare_air_quality(june_data_compiled,june_data_sorted)
+    # print(june_compared_list)
+    oct_compared_list = module.compare_air_quality(oct_data_compiled[0],oct_data_sorted)
+    # print(oct_compared_list)
+
+    june_good_percent = module.find_percent(june_data_sorted,GOOD_AIR_CUTOFF)
+    # print(june_good_percent)
+    oct_good_percent = module.find_percent(oct_data_sorted,GOOD_AIR_CUTOFF)
+    # print(oct_good_percent)
     
+    module.display_list(location_data,june_data_unsorted,oct_data_unsorted)
+    module.display_data(june_mean,june_median,june_good_percent,june_compared_list,month="June")
+    module.display_data(oct_mean,oct_median,oct_good_percent,oct_compared_list,month="October")
 
-    
 main()
+
+# Reference List
+# [1] "Why does "return list.sort()" return None, not the list? [duplicate]", stackoverflow. [Online]. Available: https://stackoverflow.com/questions/7301110/why-does-return-list-sort-return-none-not-the-list
+# [2] "Median", Wikipedia. [Online]. Available: https://en.wikipedia.org/wiki/Median
+# [3] P. Perri. “Assignment 2. Hypothesis Testing – Decomposing a problem into abstractions, coded with functions.” COMP 1701, Mount Royal University, Fall 2025. [Online]. Available: https://learn.mymru.ca
