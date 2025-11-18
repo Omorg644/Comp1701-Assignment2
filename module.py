@@ -7,13 +7,13 @@
 def mean_calc(air_data:list)->float:
     """Find the mean from a list of air quality data"""
     i = 0
-    sum = 0
+    list_sum = 0
     while i < len(air_data):
-        sum+=air_data[i]
+        list_sum+=air_data[i]
         i+=1
-    sum = sum/len(air_data)
+    mean = list_sum/len(air_data)
     # print(sum)
-    return sum
+    return mean
     
 def median_calc(air_data:list)->float:
     """Find the median from a list of air quality data"""
@@ -44,7 +44,6 @@ def assign_air_quality(location_data:list,june_data:list,user_input:bool)->list:
             air_data.append(data_oct)
             location_air_data.append([location_data[j], data_oct])
             j+=1
-    if user_input:
         data_compiled.append(location_air_data) 
         data_compiled.append(air_data)
     return data_compiled
